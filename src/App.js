@@ -32,6 +32,14 @@ class App extends Component {
     })
   }
 
+  deleteTodoListItem = (index) => {
+    let updateTodoList = this.state.todoList.slice();
+    updateTodoList.splice(index, 1);
+    this.setState({
+      todoList: updateTodoList
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -45,7 +53,7 @@ class App extends Component {
                     <button className={ "dot" + (todoItem.done ? " checked" : "") } onClick={ (e) => this.updateTodoListItem("CHECK", e, index) }></button>
                     <div className="text-label">
                       <input type="text" value={ todoItem.textLabel } onChange={ (e) => this.updateTodoListItem("TEXT", e, index) } />
-                      <button className="delete"></button>
+                      <button className="delete" onClick={ (e) => this.deleteTodoListItem(index) }></button>
                     </div>
                   </li>
                 );
