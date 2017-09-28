@@ -15,6 +15,23 @@ class App extends Component {
       ]
     }
   }
+
+  updateTodoListItem = (method, e, index) => {
+    let updateTodoList = this.state.todoList.slice();
+    switch(method) {
+      case 'CHECK':
+        updateTodoList[index].done = !updateTodoList[index].done;
+        break;
+
+      case 'TEXT':
+        updateTodoList[index].textLabel = e.target.value;
+        break;
+    }
+    this.setState({
+      todoList: updateTodoList
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -25,9 +42,9 @@ class App extends Component {
               {this.state.todoList.map((todoItem, index) => {
                 return (
                   <li key={ index }>
-                    <button className={ "dot" + (todoItem.done ? " checked" : "") }></button>
+                    <button className={ "dot" + (todoItem.done ? " checked" : "") } onClick={ (e) => this.updateTodoListItem("CHECK", e, index) }></button>
                     <div className="text-label">
-                      <span>{ todoItem.textLabel }</span>
+                      <input type="text" value={ todoItem.textLabel } onChange={ (e) => this.updateTodoListItem("TEXT", e, index) } />
                       <button className="delete"></button>
                     </div>
                   </li>
