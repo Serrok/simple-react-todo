@@ -1,4 +1,4 @@
-**Simple Todo List
+# Simple Todo List
 
 A simple todo list with features:
 
