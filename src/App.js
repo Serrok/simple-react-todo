@@ -95,7 +95,7 @@ class App extends Component {
                 <li>
                   <form onSubmit={ (e) => this.addTodoListItem(e) }>
                     <div className="text-label add">
-                      <input type="text" value={ newInput } placeholder="Add more todo..." onChange={ (e) => { this.setState({ newInput: e.target.value }) } } />
+                      <input type="text" value={ newInput } placeholder="新增待辦事項..." onChange={ (e) => { this.setState({ newInput: e.target.value }) } } />
                       <input type="submit" />
                     </div>
                   </form>
