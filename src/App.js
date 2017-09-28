@@ -12,8 +12,23 @@ class App extends Component {
         { textLabel: "洗衣服", done: false },
         { textLabel: "打掃房間", done: false },
         { textLabel: "買晚餐", done: false }
-      ]
+      ],
+      newInput: ""
     }
+  }
+
+  addTodoListItem = (e) => {
+    e.preventDefault();
+    let { newInput, todoList } = this.state;
+    let updateTodoList = todoList.slice();
+    updateTodoList.push({
+      textLabel: newInput,
+      done: false
+    })
+    this.setState({
+      todoList: updateTodoList,
+      newInput: ""
+    })
   }
 
   updateTodoListItem = (method, e, index) => {
@@ -44,13 +59,14 @@ class App extends Component {
   }
 
   render() {
+    let { newInput, todoList } = this.state;
     return (
       <div className="App">
         <div className="main-container">
           <h2>Todo List</h2>
           <div className="todo-list">
             <ul>
-              {this.state.todoList.map((todoItem, index) => {
+              {todoList.map((todoItem, index) => {
                 return (
                   <li key={ index }>
                     <button className={ "dot" + (todoItem.done ? " checked" : "") } onClick={ (e) => this.updateTodoListItem("CHECK", e, index) }></button>
@@ -62,9 +78,12 @@ class App extends Component {
                 );
               })}
               <li>
-                <div className="text-label">
-                  <span>Write Something</span>
-                </div>
+                <form onSubmit={ (e) => this.addTodoListItem(e) }>
+                  <div className="text-label add">
+                    <input type="text" value={ newInput } placeholder="Add more todo..." onChange={ (e) => { this.setState({ newInput: e.target.value }) } } />
+                    <input type="submit" />
+                  </div>
+                </form>
               </li>
             </ul>
           </div>

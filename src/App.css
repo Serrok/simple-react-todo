@@ -51,11 +51,11 @@ h2 {
   align-items: center;
   margin-left: 10px;
   border-bottom: 1px solid #CFD8DC;
-  color: #202020;
 }
 
 .todo-list > ul > li .text-label > input[type="text"] {
   width: 100%;
+  color: #202020;
 }
 
 .todo-list > ul > li,
@@ -67,6 +67,10 @@ h2 {
 .todo-list > ul > li:last-child .text-label {
   border-bottom: none;
   margin-left: 36px;
+}
+
+.todo-list > ul > li input[type="submit"] {
+  display: none;
 }
 
 @media all and (min-width: 600px) {
