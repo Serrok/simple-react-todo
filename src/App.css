@@ -56,6 +56,25 @@ h2 {
   transition-duration: 0.1s;
 }
 
+.filter button.clear-all-done {
+  width: 30px;
+  height: 30px;
+  float: right;
+  cursor: pointer;
+  opacity: 0.5;
+  background-repeat: no-repeat;
+  background-position: 5px center;
+  background-size: 24px 24px;
+  background-image: url(./icon-delete.svg);
+  transition-duration: 0.3s;
+  transition-property: opacity;
+}
+
+.filter button.clear-all-done:hover {
+  opacity: 0.9;
+  transition-duration: 0.1s;
+}
+
 .todo-list {
   position: absolute;
   top: 110px;

@@ -64,6 +64,18 @@ class App extends Component {
     return filter !== "ALL" ? (todoItem.done && filter === "DONE") || (!todoItem.done && filter === "UNDONE") : true;
   }
 
+  clearAllDone = () => {
+    let updateTodoList = [];
+    for (let item of this.state.todoList) {
+      if (!item.done) {
+        updateTodoList.push(item);
+      }
+    }
+    this.setState({
+      todoList: updateTodoList
+    })
+  }
+
   render() {
     let { todoList, newInput, filter } = this.state;
     return (
@@ -77,6 +89,7 @@ class App extends Component {
             <label onClick={ (e) => { this.setState({ filter: "UNDONE" }) } }>未完成</label>
             <input type="radio" name="filter" value="DONE" checked={ filter === "DONE" } readOnly />
             <label onClick={ (e) => { this.setState({ filter: "DONE" }) } }>已完成</label>
+            <button className="clear-all-done" onClick={ this.clearAllDone }></button>
           </div>
           <div className="todo-list">
             <ul>
