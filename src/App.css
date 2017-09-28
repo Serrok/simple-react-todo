@@ -45,6 +45,11 @@ h2 {
 
 }
 
+.todo-list > ul > li button.dot,
+.todo-list > ul > li button.delete {
+  flex-shrink: 0;
+}
+
 .todo-list > ul > li .text-label {
   width: 100%;
   display: flex;
