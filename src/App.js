@@ -13,7 +13,8 @@ class App extends Component {
         { textLabel: "打掃房間", done: false },
         { textLabel: "買晚餐", done: false }
       ],
-      newInput: ""
+      newInput: "",
+      filter: "ALL"
     }
   }
 
@@ -58,16 +59,29 @@ class App extends Component {
     })
   }
 
+  filterItem = (todoItem) => {
+    let { filter } = this.state;
+    return filter !== "ALL" ? (todoItem.done && filter === "DONE") || (!todoItem.done && filter === "UNDONE") : true;
+  }
+
   render() {
-    let { newInput, todoList } = this.state;
+    let { todoList, newInput, filter } = this.state;
     return (
       <div className="App">
         <div className="main-container">
           <h2>Todo List</h2>
+          <div className="filter">
+            <input type="radio" name="filter" value="ALL" checked={ filter === "ALL" } readOnly />
+            <label onClick={ (e) => { this.setState({ filter: "ALL" }) } }>全部</label>
+            <input type="radio" name="filter" value="UNDONE" checked={ filter === "UNDONE" } readOnly />
+            <label onClick={ (e) => { this.setState({ filter: "UNDONE" }) } }>未完成</label>
+            <input type="radio" name="filter" value="DONE" checked={ filter === "DONE" } readOnly />
+            <label onClick={ (e) => { this.setState({ filter: "DONE" }) } }>已完成</label>
+          </div>
           <div className="todo-list">
             <ul>
               {todoList.map((todoItem, index) => {
-                return (
+                return this.filterItem(todoItem) ? (
                   <li key={ index }>
                     <button className={ "dot" + (todoItem.done ? " checked" : "") } onClick={ (e) => this.updateTodoListItem("CHECK", e, index) }></button>
                     <div className="text-label">
@@ -75,16 +89,18 @@ class App extends Component {
                       <button className="delete" onClick={ (e) => this.deleteTodoListItem(index) }></button>
                     </div>
                   </li>
-                );
+                ) : null;
               })}
-              <li>
-                <form onSubmit={ (e) => this.addTodoListItem(e) }>
-                  <div className="text-label add">
-                    <input type="text" value={ newInput } placeholder="Add more todo..." onChange={ (e) => { this.setState({ newInput: e.target.value }) } } />
-                    <input type="submit" />
-                  </div>
-                </form>
-              </li>
+              {filter === "ALL" ?
+                <li>
+                  <form onSubmit={ (e) => this.addTodoListItem(e) }>
+                    <div className="text-label add">
+                      <input type="text" value={ newInput } placeholder="Add more todo..." onChange={ (e) => { this.setState({ newInput: e.target.value }) } } />
+                      <input type="submit" />
+                    </div>
+                  </form>
+                </li>
+              : <li></li> }
             </ul>
           </div>
         </div>
