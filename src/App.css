@@ -1,0 +1,102 @@
+.App {
+  padding: 20px;
+  position: relative;
+}
+
+.main-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  bottom: 20px;
+  left: 20px;
+  margin: auto;
+  border-radius: 5px;
+  box-shadow: 0px 3px 0px #90A4AE;
+  padding: 20px;
+  background-color: #F5F7F8;
+}
+
+h2 {
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 300;
+  line-height: 1em;
+  font-size: 2rem;
+  color: #455A64;
+}
+
+.todo-list {
+  position: absolute;
+  top: 90px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  overflow: auto;
+}
+
+.todo-list > ul {
+  margin: 0px 20px 10px;
+}
+
+.todo-list > ul > li {
+  display: flex;
+  align-items: center;
+  line-height: 2.6em;
+  font-size: 1.1rem;
+}
+
+.todo-list > ul > li .text-label {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  border-bottom: 1px solid #CFD8DC;
+  color: #202020;
+}
+
+.todo-list > ul > li .text-label > span {
+  width: 100%;
+  height: 2.6em;
+}
+
+.todo-list > ul > li .text-label > button.delete {
+  
+}
+
+.todo-list > ul > li:last-child .text-label {
+  border-bottom: none;
+  margin-left: 36px;
+}
+
+@media all and (min-width: 600px) {
+  .main-container {
+    width: 70%;
+  }
+  
+  h2 {
+    font-size: 2.5rem;
+  }
+
+  .todo-list > ul > li {
+    font-size: 1.25rem;
+  }
+}
+
+@media all and (min-width: 1000px) {
+  .main-container {
+    width: 720px;
+  }
+
+  .todo-list {
+    top: 120px;
+  }
+  
+  h2 {
+    font-size: 3rem;
+  }
+
+  .todo-list > ul > li {
+    font-size: 1.4rem;
+  }
+}
